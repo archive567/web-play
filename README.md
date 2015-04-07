@@ -19,9 +19,10 @@ $ git clone https://github.com/tonyday567/time-extended.git
 $ git clone https://github.com/tonyday567/pipes-extended.git
 $ git clone https://github.com/tonyday567/Haskell-MVC-Library.git
 $ cd Haskell-MVC-Library && git checkout dev && cd ..
-$ git clone https://github.com/tonyday567/lucid-page.git
-$ cd lucid-page
+$ git clone https://github.com/tonyday567/web.play.git
+$ cd web.play
 $ cabal sandbox init
+$ cabal sandbox add-source ../lucid-page
 $ cabal sandbox add-source ../mvc-extended
 $ cabal sandbox add-source ../time-extended
 $ cabal sandbox add-source ../pipes-extended
@@ -38,5 +39,3 @@ $ dist/build/test/test
 [mvc-extended]: https://github.com/tonyday567/mvc-extended
 [time-extended]: https://github.com/tonyday567/time-extended
 [pipes-extended]: https://github.com/tonyday567/pipes-extended
-
-[pointful]: http://hackage.haskell.org/package/pointful
