@@ -8,7 +8,7 @@
 
 web-play is a repo containing a bunch of code that makes this in haskell:
 
-<img src="../test/play.png" alt="alt text" width="400">
+<img src="./test/play.png" alt="alt text" width="400">
 
 The libray requires a bespoke version of the mvc library which can be found in the [mvc - dev branch][]. It also requires [lucid-page][], [mvc-extended][], [time-extended][] and [pipes-extended][].
 
