@@ -1,8 +1,4 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE DeriveDataTypeable #-}
-{-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE GADTs #-}
 {-# LANGUAGE MultiWayIf #-}
 {-# OPTIONS_GHC -fno-warn-orphans #-}
@@ -14,40 +10,22 @@
 
 module Web.Play.Server where
 
-import Web.Play.MVC
+import           Web.Play.MVC
+import           MVC.Extended
 
 import           Control.Concurrent.Async
 import           Control.Lens
-import           Control.Monad.State.Strict (State)
 import           Data.Aeson hiding ((.=))
 import           Data.Default
+import           Lucid.Page.Html (Html)
+import           Lucid.Page.Render
+import           Lucid.Page.Server
 import           MVC
 import qualified Pipes.Prelude as Pipes
-import           Lucid.Page.Server
-import Lucid.Page.Html (Html)
-import Lucid.Page.Render
 import           Web.Play.Page
 import           Web.Play.Types
 import           Web.Socket
-{-
-servePlay
-  :: (FromJSON b, ToJSON b, Show b, Eq b)
-  => Producer b IO ()
-  -> PlayConfig
-  -> Page
-  -> IO ()
-servePlay prod pc page = do
-  aRun <- async $
-    runMVC
-    (pc^.cState)
-    (asPipe $ mainPipe cat)
-    (vcPlay (pc^.cState) (pc^.cSocket) prod (return ()))
-  aServe <- async $
-      serve $ ok $ toResponse page
-  res <- wait aRun
-  cancel aServe
-  return ()
--}
+
 runPlay
   :: (ToMessage a, FromJSON b, ToJSON b, Show b, Eq b)
   => Producer b IO ()
@@ -65,26 +43,6 @@ runPlay prod page'' p = do
   res <- wait aRun
   cancel aServe
   return res
-
--- wrapping the model in a new state (to enable testing, replay etc)
-data SWrap o a b = SWrap
-  { _wrapOrig :: o
-  , _wrapOuts :: [a]
-  , _wrapIns :: [b]
-  } deriving (Show, Eq)
-
-makeLenses ''SWrap
-
-runMVCWrapped :: o -> Pipe b a (State o) () -> Managed (View a, Controller b) -> IO (SWrap o a b)
-runMVCWrapped s pipe vc = do
-  s' <- runMVC (SWrap s [] []) (asPipe $ wrapPipe pipe) vc
-  return (wrapOuts %~ reverse $ wrapIns %~ reverse $ s')
-  where
-    wrapPipe :: Pipe b a (State o) () -> Pipe b a (State (SWrap o a b)) ()
-    wrapPipe p = 
-      Pipes.chain (\x -> wrapIns %= (:) x)
-      >-> hoist (zoom wrapOrig) p
-      >-> Pipes.chain (\x -> wrapOuts %= (:) x)
 
 runPlayWrapped
   :: (ToMessage a, FromJSON b, ToJSON b, Show b, Eq b)

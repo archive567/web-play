@@ -11,10 +11,11 @@ import Web.Play.Js
 import Web.Play.Types
 import Web.Play.Html
 
+import Control.Applicative
 import Control.Lens
 import Data.Default
 import Data.Monoid
-import Data.Text (Text)
+import Data.Text (Text, pack)
 import Lucid.Page.Js as Js
 import Lucid.Page.Types
 
@@ -49,7 +50,7 @@ playCssLibs =
 
 playCssLibsLocal :: [Text]
 playCssLibsLocal = 
-  ["../static/font-awesome-min.css"]
+  ["font-awesome-min.css"]
 
 playJsLibs :: [Text]
 playJsLibs = 
@@ -58,7 +59,7 @@ playJsLibs =
 
 playJsLibsLocal :: [Text]
 playJsLibsLocal = 
-  [ "../static/jquery-2.1.3.min.js"
+  [ "jquery-2.1.3.min.js"
   ]
 
 playPageLibs :: PageLibs -> Page
@@ -66,7 +67,7 @@ playPageLibs LinkedLibs =
     pageLibsCss .~ playCssLibs
   $ pageLibsJs .~ playJsLibs
   $ mempty
-playPageLibs LocalLibs =
-    pageLibsCss .~ playCssLibsLocal
-  $ pageLibsJs .~ playJsLibsLocal
+playPageLibs (LocalLibs dir) =
+    pageLibsCss .~ ((\x -> pack dir <> "/" <> x) <$>  playCssLibsLocal)
+  $ pageLibsJs .~ ((\x -> pack dir <> "/" <> x) <$>  playJsLibsLocal)
   $ mempty

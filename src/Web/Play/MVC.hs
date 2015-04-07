@@ -14,8 +14,9 @@
 
 module Web.Play.MVC where
 
+import MVC.Extended
+
 import           Control.Applicative
-import           Control.Concurrent (threadDelay)
 import           Control.Lens
 import           Control.Monad
 import           Control.Monad.State.Strict (State, put, get)
@@ -86,19 +87,6 @@ instance (FromJSON a) => FromJSON (Out a)
 instance (ToJSON a) => ToJSON (Out a)
 
 makePrisms ''Out
-
--- helpers (up here because of template haskell)
-sleep :: Double -> IO ()
-sleep t =
-  threadDelay $
-  floor (t * 10 ^ 6)
-
-stdinParsed :: (Show a) => A.Parser a -> Managed (Controller a)
-stdinParsed parser = 
-  MVC.producer (bounded 1) $
-  Pipes.stdinLn >->
-  Pipes.map (A.parseOnly parser . SC.pack) >->
-  Pipes.eitherP
 
 -- | default model
 mainPipe
