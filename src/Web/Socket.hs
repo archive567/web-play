@@ -169,7 +169,6 @@ echoClient conn = do
         putStrLn $ ".2:" <> show msg
     link a
 
-
 runClient :: SocketConfig -> IO ()
 runClient c = WS.runClient (c^.cHost) (c^.cPort) "/" echoClient
 

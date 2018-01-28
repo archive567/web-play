@@ -11,7 +11,7 @@ import Web.Play.Types
 import Control.Applicative
 import Control.Lens
 import Data.Monoid
-import Lucid.Page
+import Web.Page
 
 buttonsPlay :: [CtrButton]
 buttonsPlay =

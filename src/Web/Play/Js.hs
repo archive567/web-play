@@ -13,7 +13,7 @@ import           Control.Lens
 import           Data.Aeson hiding ((.=))
 import qualified Data.ByteString.Lazy.Char8 as C
 import           Data.Monoid
-import           Lucid.Page.Js as Js
+import           Web.Page.Js as Js
 import           Web.Socket
 
 jsButtons :: [CtrButton] -> JStat

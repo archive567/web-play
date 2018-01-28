@@ -1,2 +1,5 @@
 /cabal.sandbox.config
 /dist/
+/.DS_Store
+/.stack-work/dist/x86_64-osx/Cabal-2.0.1.0/build/libHSweb-play-0.0.1-KB258AdvMnoAUuihliWh72.a
+.stack-work

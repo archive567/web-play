@@ -17,9 +17,9 @@ import           Control.Concurrent.Async
 import           Control.Lens
 import           Data.Aeson hiding ((.=))
 import           Data.Default
-import           Lucid.Page.Html (Html)
-import           Lucid.Page.Render
-import           Lucid.Page.Server
+import           Web.Page.Html (Html)
+import           Web.Page.Render
+import           Web.Page.Server
 import           MVC
 import qualified Pipes.Prelude as Pipes
 import           Web.Play.Page

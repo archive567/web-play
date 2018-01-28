@@ -1,73 +1,98 @@
-name: web-play
-version: 0.0.1
-cabal-version: >=1.10
-build-type: Simple
-license: MIT
-license-file: LICENSE.md
-maintainer: Tony Day <tonyday567@gmail.com>
-bug-reports: https://github.com/tonyday567/web-play/issues
-synopsis: Haskell project web-play repo 
-description: <https://github.com/tonyday567/web-play>
+-- This file has been generated from package.yaml by hpack version 0.20.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: f61139898eabaaa5466323751723b9c6d998b970492ac1ab217cf6da163d1062
+
+name:           web-play
+version:        0.0.1
+synopsis:       Haskell project web-play repo
+description:    <https://github.com/tonyday567/web-play>
+bug-reports:    https://github.com/tonyday567/web-play/issues
+maintainer:     Tony Day <tonyday567@gmail.com>
+license:        MIT
+license-file:   LICENSE.md
+build-type:     Simple
+cabal-version:  >= 1.10
+
 extra-source-files:
     README.md
 
 library
-  exposed-modules:     Web.Play
-                     , Web.Play.Page
-                     , Web.Play.Js
-                     , Web.Play.Css
-                     , Web.Play.Html
-                     , Web.Play.MVC
-                     , Web.Play.Server
-                     , Web.Play.Types
-                     , Web.Socket
-
-  other-modules:       Data.Aeson.ByteString   
-  build-depends:       base == 4.*
-                     , aeson
-                     , async
-                     , attoparsec
-                     , bytestring
-                     , data-default
-                     , lens
-                     , lucid-page
-                     , managed
-                     , mtl
-                     , mvc
-                     , mvc-extended
-                     , network              
-                     , pipes
-                     , pipes-extended
-                     , text
-                     , websockets
-
-  hs-source-dirs:      src
-  default-language:    Haskell2010
-
+  hs-source-dirs:
+      src
+  build-depends:
+      aeson
+    , async
+    , attoparsec
+    , base ==4.*
+    , bytestring
+    , data-default
+    , lens
+    , managed
+    , mtl
+    , mvc
+    , mvc-extended
+    , network
+    , pipes
+    , text
+    , web-page
+    , websockets
+  exposed-modules:
+      Web.Play
+      Web.Play.Page
+      Web.Play.Js
+      Web.Play.Css
+      Web.Play.Html
+      Web.Play.MVC
+      Web.Play.Server
+      Web.Play.Types
+      Web.Socket
+      Pipes.Monoid
+  other-modules:
+      Data.Aeson.ByteString
+      Paths_web_play
+  default-language: Haskell2010
 
 test-suite test
-  type:                exitcode-stdio-1.0
-  main-is:             test.hs
-  default-language:    Haskell2010
-  ghc-options:         -Wall -O2 -threaded
-  hs-source-dirs:      src, test
-  build-depends:       base == 4.*
-                     , web-play
-                     , tasty
-                     , tasty-hspec
-                     , aeson
-                     , async
-                     , attoparsec
-                     , bytestring
-                     , data-default
-                     , lens
-                     , lucid-page
-                     , managed
-                     , mtl
-                     , mvc
-                     , mvc-extended
-                     , network              
-                     , pipes
-                     , pipes-extended
-                     , text
-                     , websockets
+  type: exitcode-stdio-1.0
+  main-is: test.hs
+  hs-source-dirs:
+      src
+      test
+  ghc-options: -Wall -O2 -threaded
+  build-depends:
+      aeson
+    , async
+    , attoparsec
+    , base ==4.*
+    , bytestring
+    , data-default
+    , lens
+    , managed
+    , mtl
+    , mvc
+    , mvc-extended
+    , network
+    , pipes
+    , tasty
+    , tasty-hspec
+    , text
+    , web-page
+    , web-play
+    , websockets
+  other-modules:
+      Data.Aeson.ByteString
+      Pipes.Monoid
+      Web.Play
+      Web.Play.Css
+      Web.Play.Html
+      Web.Play.Js
+      Web.Play.MVC
+      Web.Play.Page
+      Web.Play.Server
+      Web.Play.Types
+      Web.Socket
+      TestPlay
+      Paths_web_play
+  default-language: Haskell2010

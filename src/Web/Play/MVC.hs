@@ -34,6 +34,8 @@ import           Pipes.Internal (unsafeHoist)
 import qualified Pipes.Prelude as Pipes
 import           Web.Play.Types
 import           Web.Socket
+import qualified Pipes.Monoid as Pipes
+
 
 data In a
   = Stream a

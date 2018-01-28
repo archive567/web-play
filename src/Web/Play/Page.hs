@@ -16,8 +16,8 @@ import Control.Lens
 import Data.Default
 import Data.Monoid
 import Data.Text (Text, pack)
-import Lucid.Page.Js as Js
-import Lucid.Page.Types
+import Web.Page.Js as Js
+import Web.Page.Types
 
 play :: Page
 play = playWith def

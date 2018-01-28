@@ -1,0 +1,54 @@
+name: web-play
+version: '0.0.1'
+synopsis: Haskell project web-play repo
+description: <https://github.com/tonyday567/web-play>
+maintainer: Tony Day <tonyday567@gmail.com>
+license: MIT
+license-file: LICENSE.md
+bug-reports: https://github.com/tonyday567/web-play/issues
+extra-source-files:
+- README.md
+dependencies:
+- base ==4.*
+- aeson
+- async
+- attoparsec
+- bytestring
+- data-default
+- lens
+- web-page
+- managed
+- mtl
+- mvc
+- mvc-extended
+- network
+- pipes
+- text
+- websockets
+library:
+  source-dirs: src
+  exposed-modules:
+  - Web.Play
+  - Web.Play.Page
+  - Web.Play.Js
+  - Web.Play.Css
+  - Web.Play.Html
+  - Web.Play.MVC
+  - Web.Play.Server
+  - Web.Play.Types
+  - Web.Socket
+  - Pipes.Monoid
+tests:
+  test:
+    main: test.hs
+    source-dirs:
+    - src
+    - test
+    ghc-options:
+    - -Wall
+    - -O2
+    - -threaded
+    dependencies:
+    - web-play
+    - tasty
+    - tasty-hspec

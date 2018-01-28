@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Web.Play.Css where
 
-import Lucid.Page.Css as Css
+import Web.Page.Css as Css
 
 cssPlay :: Css
 cssPlay = ".play" ? do

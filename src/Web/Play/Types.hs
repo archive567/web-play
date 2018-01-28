@@ -16,7 +16,7 @@ import Data.Data
 import Data.Default
 import Data.Monoid
 import GHC.Generics
-import Lucid.Page
+import Web.Page
 import Web.Socket
 
 {- type representing the state of controllers on a page -}
